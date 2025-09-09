@@ -19,7 +19,30 @@ KB Software Ltd
 https://github.com/pkimber/kb-mozilla-django-oidc/ is a fork of
 https://github.com/mozilla/mozilla-django-oidc
 
-::
+The purpose of the fork is to add a ``OIDC_AUTHENTICATION_CALLBACK_HOST``
+setting to work alongside the existing ``OIDC_AUTHENTICATION_CALLBACK_URL``.
+
+When using Microsoft Front Door the redirect URL is on a different host.
+For more information, see our ticket number #7820, 08/09/2025.
+
+Our fork only updates the ``absolutify`` function in
+``mozilla_django_oidc/utils.py``.
+
+The ``absolutify`` function is only used in the following modules to create an
+absolute URL for the ``OIDC_AUTHENTICATION_CALLBACK_URL``::
+
+  mozilla_django_oidc/auth.py
+  mozilla_django_oidc/middleware.py
+  mozilla_django_oidc/views.py
+
+To merge future updates from the original code, we **only** need to check
+``absolutify`` is not used for anything other than updating
+``OIDC_AUTHENTICATION_CALLBACK_URL``.
+
+All changes (other than the updated ``absolutify`` function) can then be
+copied over.
+
+Development::
 
   cd ~/dev/src/kb-mozilla-django-oidc
   uv pip install -r requirements/requirements_dev.txt
