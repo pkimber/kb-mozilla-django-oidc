@@ -51,6 +51,8 @@ Testing::
 
   tox
 
+.. tip:: For more information on testing, see `Contributing, Tips`_
+
 Build and publish::
 
   # Update '__version__' in 'mozilla_django_oidc/__init__.py'
@@ -247,3 +249,4 @@ Tools used in rendering this package:
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+.. _`Contributing, Tips`: https://mozilla-django-oidc.readthedocs.io/en/stable/contributing.html#tips
