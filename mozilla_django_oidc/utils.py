@@ -1,5 +1,6 @@
 import logging
 import time
+import urllib.parse
 import warnings
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from hashlib import sha256
@@ -38,7 +39,10 @@ def import_from_settings(attr, *args):
 
 def absolutify(request, path):
     """Return the absolute URL of a path."""
-    return request.build_absolute_uri(path)
+    if hasattr(settings, "OIDC_AUTHENTICATION_CALLBACK_HOST"):
+        return urllib.parse.urljoin(settings.OIDC_AUTHENTICATION_CALLBACK_HOST, path)
+    else:
+        return request.build_absolute_uri(path)
 
 
 def is_authenticated(user):

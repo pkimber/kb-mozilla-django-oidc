@@ -39,6 +39,24 @@ class AbsolutifyTestCase(TestCase):
         url = absolutify(req, "/foo/bar")
         self.assertEqual(url, "http://testserver:8888/foo/bar")
 
+    @override_settings(OIDC_AUTHENTICATION_CALLBACK_HOST="https://www.kbsoftware.co.uk")
+    def test_absolutify_callback_host(self):
+        req = RequestFactory().get("/something/else")
+        url = absolutify(req, "/foo/bar")
+        self.assertEqual(url, "https://www.kbsoftware.co.uk/foo/bar")
+
+        req = RequestFactory().get("/something/else", SERVER_PORT=8888)
+        url = absolutify(req, "/foo/bar")
+        self.assertEqual(url, "https://www.kbsoftware.co.uk/foo/bar")
+
+    @override_settings(
+        OIDC_AUTHENTICATION_CALLBACK_HOST="https://www.kbsoftware.co.uk/"
+    )
+    def test_absolutify_callback_host_with_slash(self):
+        req = RequestFactory().get("/something/else")
+        url = absolutify(req, "/foo/bar")
+        self.assertEqual(url, "https://www.kbsoftware.co.uk/foo/bar")
+
     @override_settings(SECURE_PROXY_SSL_HEADER=("HTTP_X_FORWARDED_PROTO", "https"))
     def test_absolutify_https(self):
         req = RequestFactory(HTTP_X_FORWARDED_PROTO="https").get("/", SERVER_PORT=443)
