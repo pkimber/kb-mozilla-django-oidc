@@ -13,6 +13,29 @@ mozilla-django-oidc
 
 A lightweight authentication and access management library for integration with OpenID Connect enabled authentication services.
 
+KB Software Ltd
+---------------
+
+https://github.com/pkimber/kb-mozilla-django-oidc/ is a fork of
+https://github.com/mozilla/mozilla-django-oidc
+
+::
+
+  cd ~/dev/src/kb-mozilla-django-oidc
+  uv pip install -r requirements/requirements_dev.txt
+
+Testing::
+
+  tox
+
+Build and publish::
+
+  # Update '__version__' in 'mozilla_django_oidc/__init__.py'
+  rm -rf dist/; and uv build
+  uv publish --index dev
+
+.. tip:: Before ``publish``, add ``UV_PUBLISH_USERNAME``
+         and ``UV_PUBLISH_PASSWORD`` to ``.private``.
 
 Documentation
 -------------
