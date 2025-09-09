@@ -1,0 +1,5 @@
+[[tool.uv.index]]
+name = "dev"
+url = "http://salt.kb.vpn/kb/dev/+simple/"
+default = true
+publish-url = "http://salt.kb.vpn/kb/dev/"

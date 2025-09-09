@@ -56,3 +56,6 @@ integration_tests/geckodriver.log
 
 # vscode
 .vscode
+
+# private
+.private
